@@ -13,7 +13,7 @@ flags:
 - key: table_more_data
   name: table_more_data
   type: BOOLEAN_FLAG_TYPE
-  enabled: false
+  enabled: true
   rollouts:
   - segment:
       key: ab-tests
