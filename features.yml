@@ -1,0 +1,41 @@
+version: "1.2"
+namespace: default
+flags:
+- key: red_button
+  name: red_button
+  type: BOOLEAN_FLAG_TYPE
+  description: asdasdad
+  enabled: true
+  rollouts:
+  - segment:
+      key: front-dev
+      value: true
+- key: table_more_data
+  name: table_more_data
+  type: BOOLEAN_FLAG_TYPE
+  enabled: false
+  rollouts:
+  - segment:
+      key: ab-tests
+      value: true
+- key: other_flag
+  name: other_flag
+  type: BOOLEAN_FLAG_TYPE
+  enabled: false
+segments:
+- key: ab-tests
+  name: ab tests
+  constraints:
+  - type: STRING_COMPARISON_TYPE
+    property: login
+    operator: isoneof
+    value: '["kapustkin","ivanov"]'
+  match_type: ANY_MATCH_TYPE
+- key: front-dev
+  name: front-dev
+  constraints:
+  - type: STRING_COMPARISON_TYPE
+    property: login
+    operator: isoneof
+    value: '["petrov"]'
+  match_type: ANY_MATCH_TYPE
